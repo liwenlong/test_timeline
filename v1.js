@@ -7,29 +7,38 @@ function drag(obj) {
     }
     var isMove = false;
     var left, top, beginX, endX, beginY, endY;
-    $(".tl_mainLine").on("mousedown", function(e) {
-
+    $(".tl_warp").on("mousedown", function(e) {
       left = parseInt(obj.css("left"));
-      top = parseInt(obj.css("top"));
       beginX = e.clientX;
-      beginY = e.clientY;
       isMove = true;
     })
     $("body").on("mousemove", function(e) {
       if (isMove) {
         endX = e.clientX;
-        endY = e.clientY;
         obj.css({
-          "left": left + endX - beginX,
-          "top": top + endY - beginY
+          "left": left + endX - beginX
         })
       }
     })
     $("body").on("mouseup", function(e) {
       isMove = false;
+      //判断边界情况
+      var maxLeft = 20;
+      var minLeft = 1000 - parseInt($(".tl_news").css("width"));
+      var curenLeft = parseInt(obj.css("left"));
+      if (curenLeft < minLeft) {
+        obj.animate({
+          "left": minLeft
+        }, 300)
+      }
+      if (curenLeft > maxLeft) {
+        obj.animate({
+          "left": maxLeft
+        }, 300)
+      }
 
     })
- }
+  }
   (function(win, $) {
 
     function TimeLine() {
@@ -76,61 +85,48 @@ function drag(obj) {
       }
     }
     TimeLine.prototype.initMainline = function(baseWidth) {
-      //初始化
-      //刻度尺
-      //时间标
-      //事件块
-      var maxYear,
-        minYear,
-        str1 = [],
-        str2 = [],
-        str3 = [],
-        timeArr = ["2005.9", "2008.9", "2010.3", "2010.9", "2013.5"],
-        unkonw;
-
-      minYear = parseInt(timeArr[0].split(".")[0]);
-      maxYear = parseInt(timeArr[timeArr.length - 1].split(".")[0]);
-      $(".tl_rule").css({
-        "left": -baseWidth * 0.3,
-        "width": baseWidth * (maxYear - minYear)*1.5
-      })
-
-      //pos
-      for (var i = 0; i < timeArr.length; i++) {
-        var month = parseInt(timeArr[i].split(".")[1]);
-        var year = parseInt(timeArr[i].split(".")[0]) - minYear;
-        str1.push('<div class="news_block" style="left:' + (year + month / 12) * baseWidth + 'px">' + i + '</div>');
-        str2.push('<div class="pos_block" style="left:' + (year + month / 12) * baseWidth + 'px"></div>');
-
-
+        //初始化
+        //刻度尺
+        //时间标
+        //事件块
+        var maxYear,
+          minYear,
+          str1 = [],
+          str2 = [],
+          str3 = [],
+          timeArr = ["2005.9", "2008.9", "2010.3", "2010.9","2012.5", "2013.5"],
+          unkonw;
+        minYear = parseInt(timeArr[0].split(".")[0]);
+        maxYear = parseInt(timeArr[timeArr.length - 1].split(".")[0]);
+        $(".tl_rule").css({
+            "left": -baseWidth ,
+            "width": baseWidth * (maxYear - minYear + 1) + 1000
+          })
+          //pos
+        for (var i = 0; i < timeArr.length; i++) {
+          var month = parseInt(timeArr[i].split(".")[1]);
+          var year = parseInt(timeArr[i].split(".")[0]) - minYear;
+          str1.push('<div class="news_block" style="left:' + (year + month / 12) * baseWidth + 'px">' + i + '</div>');
+          str2.push('<div class="pos_block" style="left:' + (year + month / 12) * baseWidth + 'px"></div>');
+        }
+        //set year
+        for (var j = minYear; j <= maxYear; j++) {
+          str3.push('<div class="number_block" style="left:' + (j - minYear) * baseWidth + 'px">' + j + '</div>');
+        }
+        $(".tl_news").html(str1.join(""));
+        $(".tl_mainPos").html(str2.join(""));
+        $(".tl_number").html(str3.join(""));
       }
-
-      //set year
-      for (var j = minYear; j <= maxYear; j++) {
-        str3.push('<div class="number_block" style="left:' + (j - minYear) * baseWidth + 'px">' + j + '</div>');
-      }
-      $(".tl_news").html(str1.join(""));
-      $(".tl_mainPos").html(str2.join(""));
-      $(".tl_number").html(str3.join(""));
-
-    }
-
-
-    //init
+      //init
     TimeLine.prototype.init = function() {
       this.getConfig();
       this.initMainline(baseTime[currenTime]);
       this.handdle();
-      
-
     }
     TimeLine.prototype.setNewTime = function(baseWidth) {
-
-
       //年份值
       //位置图
       //信息块
-
       var minYear = parseInt(timeArr[0].split(".")[0]);
       var maxYear = parseInt(timeArr[timeArr.length - 1].split(".")[0]);
       var obj1 = $(".news_block"),
@@ -139,29 +135,25 @@ function drag(obj) {
         obj4 = $(".number_block");
       //刻度尺
       obj3.animate({
-          "left": -baseWidth * 0.3,
-          "width": baseWidth * (maxYear - minYear)*1.5
+          "left": -baseWidth ,
+          "width": baseWidth * (maxYear - minYear + 1) + 1000
         }, 300)
         //年份值
       obj4.each(function(index) {
-          $(this).animate({
-             "left":index*baseWidth
-          },300)
+        $(this).animate({
+          "left": index * baseWidth
+        }, 300)
       })
-
-      obj1.each(function(index){
+      obj1.each(function(index) {
         var month = parseInt(timeArr[index].split(".")[1]);
         var year = parseInt(timeArr[index].split(".")[0]) - minYear;
         $(this).animate({
           "left": (year + month / 12) * baseWidth
-        },300)
+        }, 300)
         obj2.eq(index).animate({
           "left": (year + month / 12) * baseWidth
-        },300)
-
+        }, 300)
       })
-
-
     }
     TimeLine.prototype.handdle = function() {
       var that = $(this);
@@ -173,16 +165,14 @@ function drag(obj) {
         }
 
       })
-
       that.on("smaller", function() {
         // 触发扩大
-        if (currenTime  > 0) {
+        if (currenTime > 0) {
           currenTime--;
           this.setNewTime(baseTime[currenTime]);
         }
 
       })
-
       $("#enlarge").on("click", function() {
         that.trigger('bigger');
       })
@@ -190,8 +180,6 @@ function drag(obj) {
       $("#small").on("click", function() {
         that.trigger('smaller');
       })
-
-
     }
 
     //@TODo
