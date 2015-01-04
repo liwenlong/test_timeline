@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>测试position</title>
+	<style>
+      #tl_view{width: 1000px;height: 600px;border: 1px solid;margin: 50px;position: relative;overflow: hidden;}
+      .tl_warp{position: absolute;width: 1500px;height: 500px;left:0px;}
+      .tl_news{width: 100%;height:200px;position: relative;}
+      .news_block{position: absolute;width: 100px;height: 50px;background: red;}
+      .tl_mainLine{width: 100%;height:200px;cursor: move;}
+	  .tl_mainPos{height: 30px;}
+	  .tl_rule{height: 10px;background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAMCAMAAACdvocfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRFzMzM////040VdgAAAAJ0Uk5T/wDltzBKAAAAEklEQVR42mJgYAQCBopJgAADAAbwADHy2qHzAAAAAElFTkSuQmCC);position: relative;width: 3000px;}
+	  .tl_number{height: 40px;}
+      .pos_block{position: absolute; background:url(http://y1.ifengimg.com/index/sprite8.gif) no-repeat 0 8px;width: 10px;height: 20px;}
+      .number_block{position: absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAMCAMAAACdvocfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRFzMzM////040VdgAAAAJ0Uk5T/wDltzBKAAAAEklEQVR42mJgYAQCBopJgAADAAbwADHy2qHzAAAAAElFTkSuQmCC);width: 20px;height: 16px;background-position: 10px top;background-repeat: no-repeat;padding-top: 10px}
+      .anniu{position: absolute;bottom: 200px;}
+	</style>
+</head>
+<body>
+	<div id="tl_view">
+		<div class="tl_warp">
+			<!--信息块 begin-->
+			<div class="tl_news">
+				
+			</div>
+			<!--信息块 end-->
+			<!--主轴 begin-->
+			<div class="tl_mainLine">
+				<!--主要位置 begin-->
+				<div class="tl_mainPos">
+					<div class="pos_block"></div>
+				</div>
+				<!--刻度尺 begin-->
+				<div class="tl_rule">
+					
+				</div>
+				<!--刻度数字 begin-->
+				<div class="tl_number">
+					<div class="number_block"></div>
+				</div>
+				<!--背景 begin-->
+				<div class="tl_background"></div>
+			</div>
+			<!--主轴 end  -->
+		</div>
+		<div class="anniu">
+			
+			<input type="button"  id="enlarge" value="扩大" />
+			<input type="button"  id="small"  value="缩小"/>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var timeline_config={
+			"name":"qqd"
+		};
+	</script>
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	<script type="text/javascript" src="v1.js"></script>
+	<script type="text/javascript">
+	    drag($(".tl_warp"));	
+	</script>
+</body>
+</html>
