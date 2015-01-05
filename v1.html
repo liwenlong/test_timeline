@@ -5,9 +5,9 @@
 	<title>测试position</title>
 	<style>
       #tl_view{width: 1000px;height: 600px;border: 1px solid;margin: 50px;position: relative;overflow: hidden;}
-      .tl_warp{position: absolute;width: 1400px;height: 500px;left:0px;}
+      .tl_warp{position: absolute;height: 500px;left:0px;width: 1800px;}
       .tl_news{height:200px;position: relative;}
-      .news_block{position: absolute;width: 100px;height: 50px;background: red;}
+      .news_block{position: absolute;width: 100px;height: 50px;background: red;top:20px;}
       .tl_mainLine{width: 100%;height:200px;cursor:move;}
 	  .tl_mainPos{height: 30px;}
 	  .tl_rule{height: 10px;background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAMCAMAAACdvocfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRFzMzM////040VdgAAAAJ0Uk5T/wDltzBKAAAAEklEQVR42mJgYAQCBopJgAADAAbwADHy2qHzAAAAAElFTkSuQmCC);position: relative;width: 3000px;}
@@ -52,11 +52,69 @@
 	</div>
 
 	<script type="text/javascript">
-		var timeline_config={
-			"name":"qqd"
-		};
+		var timeline_config = {
+			"warpId": "id",
+			"width": "1000",
+			"height": "800",
+			"isAuto": true,
+			"data": [{
+				"title": "测试数据",
+				"type": 1,
+				"url": "http://www.baidu.com",
+				"time": "2005.9",
+				"content": "这里是测试内容",
+				"smallPic": "small.jpg",
+				"bigPic": "big.jpg",
+				"video": "video.3gp"
+			}, {
+				"title": "测试数据2",
+				"type": 1,
+				"url": "http://www.baidu.com",
+				"time": "2008.9",
+				"content": "这里是测试内容",
+				"smallPic": "small.jpg",
+				"bigPic": "big.jpg",
+				"video": "video.3gp"
+			},{
+				"title": "测试数据3",
+				"type": 1,
+				"url": "http://www.baidu.com",
+				"time": "2010.3",
+				"content": "这里是测试内容",
+				"smallPic": "small.jpg",
+				"bigPic": "big.jpg",
+				"video": "video.3gp"
+			}, {
+				"title": "测试数据4",
+				"type": 1,
+				"url": "http://www.baidu.com",
+				"time": "2010.9",
+				"content": "这里是测试内容",
+				"smallPic": "small.jpg",
+				"bigPic": "big.jpg",
+				"video": "video.3gp"
+			}, {
+				"title": "测试数据4",
+				"type": 1,
+				"url": "http://www.baidu.com",
+				"time": "2013.5",
+				"content": "这里是测试内容",
+				"smallPic": "small.jpg",
+				"bigPic": "big.jpg",
+				"video": "video.3gp"
+			}
+			]
+		}
+
 	</script>
 	<script src="jquery.js"></script>
+	<!--  jquery ui  drag
+	<script src="jquery-ui-1.9.2.custom.js"></script>
+	<script type="text/javascript">
+      $( ".tl_warp" ).draggable({ axis: "x" })
+	</script>
+     -->
 	<script type="text/javascript" src="v1.js"></script>
+
 </body>
 </html>
