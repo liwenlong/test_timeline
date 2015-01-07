@@ -69,9 +69,8 @@
             year,
             month,
             time = this.time;
-
+            data=this.config.data;
         var timeArr = time.timeArr;
-        console.log(timeArr);
         minYear = time.minYear;
         maxYear = time.maxYear;
         $(".tl_rule").css({
@@ -84,7 +83,7 @@
             var year = parseInt(timeArr[i]) - minYear;
             year = time.timeDiv[i][0] - minYear;
             month = time.timeDiv[i][1];
-            str1.push('<div class="news_block" style="left:' + (year + month / 12) * baseWidth + 'px">' + i + '</div>');
+            str1.push('<div class="news_block" style="left:' + (year + month / 12) * baseWidth + 'px;z-index:'+(i+1)+'">' + data[i].title + '</div>');
             str2.push('<div class="pos_block" style="left:' + (year + month / 12) * baseWidth + 'px"></div>');
         }
         //set year
@@ -201,8 +200,30 @@
 
         //drag event
         this.drag($(".tl_warp"));
-    }
+        $(".news_block").each(function(index){
+            
+            $(this).on("click", function() {
+                //详细信息块展示
+                //自身位置移动
+                var $this = $(this);
+                var $thisLeft = parseInt($this.css("left"));
+                var kdc = $(".tl_warp");
+                var left = parseInt(kdc.css("left"));
+                if (!$this.hasClass('news_block_on')) {
+                    $(".news_block_on").removeClass('news_block_on');
+                    $this.addClass('news_block_on');
+                    //刻度尺移动
+                    kdc.animate({
+                        "left": 500 - $thisLeft
+                    })
+                }
 
+            })
+        })
+       
+
+
+    }
     //@TODo
     //动画效果不够严谨  
     //信息块点击的效果 主轴的功能
@@ -211,6 +232,18 @@
     //相关地方更新
 
     //init
+     /*
+      marsk  
+      浮层内容  每条具体的新闻
+      展现形式  以浮层 slide 或者其他新闻列表方式展示
+      浮层功能  新闻阅读  新闻切换
+      通讯接口  
+             其他模块要求marsk展示第n个信息快
+             marsk通知其他块要展示第n个信息块
+
+       模块化  每个模块都有自己的动作，都会触发一些动作，都会设置一些动作  事件绑定原理
+
+    */
     TimeLine.prototype.init = function() {
         this.getConfig();
         this.initDate();
@@ -220,6 +253,5 @@
     }
     window.timeline = new TimeLine();
     window.timeline.init();
-
 
 })(window, jQuery)
