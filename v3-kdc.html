@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>测试position</title>
+	<style>
+		*{padding: 0px;margin: 0px;}
+	   #kdc{width: 1000px;height: 100px;overflow: hidden;margin:50px;border: 1px solid;padding: 30px 0px;position: relative;}
+       .line{width:30000px;height: 50px;background: url(img/line.jpg) repeat-x;position: absolute;left:0px;cursor: move;}
+       .line-block{float: left;height: 100px;position: relative;overflow: hidden;zoom:1;}
+       .line-year{ height: 30px;position: absolute;left:10px;top:40px;background: red; width:10px;border: 1px solid;z-index: 50;zoom:1;}
+	    .line-month{ display: inline-block;float: left; background: url(img/small.jpg) top left no-repeat;height: 20px;line-height: 50px;}
+		.line-month-big{float: left;background: url(img/big.jpg) top left no-repeat;height: 50px;line-height: 50px;}
+		.warp-year{position: relative;}
+		.warp-month{overflow:hidden;zoom:1;}
+		#cf{width: 300px;height: 100px;}
+		#box{width: 1000px;height: 300px;}
+		.a1{width: 80%;height: 80%;border: 1px solid;}
+		.a2{width: 80%;height: 80%;border: 1px solid;}
+		.a3{width:80%;height: 80%;border: 1px solid;}
+	</style>
+</head>
+<body>
+	
+
+<div id="kdc">
+    <div id="kdc-warp">
+    	<div class="year">
+    		<div class="year-warp">
+    			<div class="month">
+    				<div class="moth-warp">
+    					<div class="day">
+    						<div class="day-warp">
+    							<div class="hours">6</div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+	
+
+    </div>
+</div>
+
+<div id="cf">
+	<input type="submit" value="扩大"  id="big" />
+	<input type="submit" value="缩小"  id="small"/>
+</div>
+
+
+<div id="box">
+	
+	<div class="a1">
+		<div class="a2">
+			<div class="a3">asdfasd</div>
+		</div>
+	</div>
+
+</div>
+
+	<script src="jquery.js"></script>
+	<script  src="v3-kdc.js"></script>
+	
+</body>
+</html>
