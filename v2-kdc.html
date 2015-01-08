@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>测试position</title>
+	<style>
+		*{padding: 0px;margin: 0px;}
+	   #kdc{width: 1000px;height: 100px;overflow: hidden;margin:50px;border: 1px solid;padding: 30px 0px;position: relative;}
+       .line{width:30000px;height: 50px;background: url(img/line.jpg) repeat-x;}
+       .line-block{float: left;height: 100px;position: relative;overflow: hidden;zoom:1;}
+       .line-year{ height: 30px;position: absolute;left:10px;top:40px;background: red; width:10px;border: 1px solid;z-index: 50;zoom:1;}
+	    .line-month{ display: inline-block;float: left; background: url(img/small.jpg) top left no-repeat;height: 20px;line-height: 50px;}
+		.line-month-big{float: left;background: url(img/big.jpg) top left no-repeat;height: 50px;line-height: 50px;}
+		.warp-year{position: relative;}
+		.warp-month{overflow:hidden;zoom:1;}
+		#cf{width: 300px;height: 100px;}
+	</style>
+</head>
+<body>
+	
+
+<div id="kdc">
+    <div class="line">
+        <div class="line-block" style="width:600px">
+             <div class="warp-year">
+             	<div class="line-year">
+	                1
+	            </div>
+             </div>
+			<div class="warp-month">
+	            <div class="line-month-big" style="width:50px">
+	                1
+	            </div>
+	            <div class="line-month" style="width:50px">
+	                2
+	            </div>
+	            <div class="line-month" style="width:50px">
+	                3
+	            </div>
+	            <div class="line-month" style="width:50px">
+	                4
+	            </div>
+	            <div class="line-month" style="width:50px">
+	                5
+	            </div>
+	            <div class="line-month" style="width:50px">
+	                6
+	            </div>
+	            <div class="line-month" style="width:50px">
+	                7
+	            </div>
+	            <div class="line-month" style="width:50px">
+	                8
+	            </div>
+	            <div class="line-month" style="width:50px">
+	                9
+	            </div>
+	            <div class="line-month" style="width:50px">
+	                10
+	            </div>
+	            <div class="line-month" style="width:50px">
+	                11
+	            </div>
+	            <div class="line-month" style="width:50px">
+	                12
+	            </div>
+            </div>     
+        </div>
+    </div>
+</div>
+
+	<div id="cf">
+		<input type="submit" value="扩大"  id="big" />
+		<input type="submit" value="缩小"  id="small"/>
+	</div>
+
+	<script src="jquery.js"></script>
+	<script >
+		
+		var kdc_config={
+		  "id":"kdc",
+		  "scale":"month",
+		  "max":20,
+		  "min":1
+		}
+	</script>
+	<script  src="v2-kdc.js"></script>
+	
+</body>
+</html>
