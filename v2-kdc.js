@@ -17,7 +17,7 @@
     */
     //全局变量
    
-    var bsWidth = 600;
+    var bsWidth = 800;
     var curSize = 1;
 
     function getChild(n) {  //得到子约数函数
